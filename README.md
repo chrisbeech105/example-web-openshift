@@ -22,4 +22,6 @@ Once you have created your repository, please:
 * Ensure as many of the GitHub Standards [TODO] rules are maintained as possibly can.
 * Modify the MoD Compliant Badge url using these instructions [TODO].
 
+test first commit 
+
 [create a repository]: https://github.com/defencedigital/template-repository/generate
