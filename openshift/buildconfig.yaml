@@ -1,0 +1,24 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: mod-web-app
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/chrisbeech105/example-web-openshift
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  output:
+    to:
+      kind: DockerImage
+      name: dso-quay-registry-quay-quay-enterprise.apps.ocp1.azure.dso.digital.mod.uk/data_services_platform/dd-webapp:latest
+    pushSecret:
+      name: data-services-platform-test-app-chris-pull-secret
+  triggers:
+  - type: ConfigChange
+  - type: GitHub
+    github:
+      secret: github-webhook-secret
