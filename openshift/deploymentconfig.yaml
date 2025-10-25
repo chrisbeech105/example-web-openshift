@@ -1,12 +1,11 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
 metadata:
   name: mod-web-app
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: mod-web-app
+    app: mod-web-app
   template:
     metadata:
       labels:
@@ -14,9 +13,18 @@ spec:
     spec:
       containers:
       - name: web
-        image: image-registry.openshift-image-registry.svc:5000/dd-dataservices-airf/mod-web-app:latest
+        image: mod-web-app:latest
         ports:
         - containerPort: 8080
+  triggers:
+  - type: ImageChange
+    imageChangeParams:
+      automatic: true
+      containerNames:
+      - web
+      from:
+        kind: ImageStreamTag
+        name: mod-web-app:latest
 ---
 apiVersion: v1
 kind: Service

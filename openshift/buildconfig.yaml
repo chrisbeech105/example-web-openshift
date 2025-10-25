@@ -10,13 +10,11 @@ spec:
   strategy:
     type: Docker
     dockerStrategy:
-      dockerfilePath: Dockerfile
+      dockerfilePath: openshift/Dockerfile
   output:
     to:
-      kind: DockerImage
-      name: dso-quay-registry-quay-quay-enterprise.apps.ocp1.azure.dso.digital.mod.uk/data_services_platform/dd-webapp:latest
-    pushSecret:
-      name: data-services-platform-test-app-chris-pull-secret
+      kind: ImageStreamTag
+      name: mod-web-app:latest
   triggers:
   - type: ConfigChange
   - type: GitHub
